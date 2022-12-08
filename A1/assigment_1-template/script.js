@@ -79,18 +79,15 @@ function setup() {
   // Get size and position
   document.addEventListener("pointerdown", (e) => {
     // create flame
-    const flameDiv = document.createElement("div");
+    createElement("flame", e);
+    /* const flameDiv = document.createElement("div");
     flameDiv.classList.add("flame");
     flameDiv.id = `flame${e.pointerId}`;
     updateSizeAndPos(e, flameDiv, 2.5);
-    document.body.append(flameDiv);
+    document.body.append(flameDiv); */
 
     // create light
-    const lightDiv = document.createElement("div");
-    lightDiv.classList.add("light");
-    lightDiv.id = `light${e.pointerId}`;
-    updateSizeAndPos(e, lightDiv, 4);
-    document.body.append(lightDiv);
+    createElement("light", e);
   });
 
   // Make the candle follow the pointer when it moves
@@ -122,6 +119,14 @@ function setup() {
     // set postion of flame
     flame.style.left = `${event.pageX}px`;
     flame.style.top = `${event.pageY}px`;
+  }
+
+  function createElement(type, event) {
+    const element = document.createElement("div");
+    element.classList.add(`${type}`);
+    element.id = `${type}${event.pointerId}`;
+    updateSizeAndPos(event, element, 2.5);
+    document.body.append(element);
   }
 
   function removeElement(type, pointerId) {
