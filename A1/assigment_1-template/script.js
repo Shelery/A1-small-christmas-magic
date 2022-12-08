@@ -76,38 +76,24 @@ function loop() {
  */
 function setup() {
   // Create a div for flame light when screen touched
-  // Get size and position
   document.addEventListener("pointerdown", (e) => {
-    // create flame
     createElement("flame", e);
-    /* const flameDiv = document.createElement("div");
-    flameDiv.classList.add("flame");
-    flameDiv.id = `flame${e.pointerId}`;
-    updateSizeAndPos(e, flameDiv, 2.5);
-    document.body.append(flameDiv); */
 
-    // create light
     createElement("light", e);
   });
 
   // Make the candle follow the pointer when it moves
   document.addEventListener("pointermove", (e) => {
     // Make the flame follow the pointer
-    // find the HTML element that is the "object" of the current event
-    const flameDiv = document.getElementById(`flame${e.pointerId}`);
-    if (flameDiv == null) return;
-    updateSizeAndPos(e, flameDiv, 2.5);
+    followPointer("flame", e);
 
     // Make the light follow the pointer
-    const lightDiv = document.getElementById(`light${e.pointerId}`);
-    updateSizeAndPos(e, lightDiv, 4);
+    followPointer("light", e);
   });
   // remove the candle when finger lifted
   document.addEventListener("pointerup", (e) => {
-    // Remove flame
     removeElement("flame", e.pointerId);
 
-    // Remove light
     removeElement("light", e.pointerId);
   });
 
@@ -127,6 +113,13 @@ function setup() {
     element.id = `${type}${event.pointerId}`;
     updateSizeAndPos(event, element, 2.5);
     document.body.append(element);
+  }
+
+  function followPointer(type, event) {
+    // find the HTML element that is the "object" of the current event
+    const element = document.getElementById(`${type}${event.pointerId}`);
+    if (element == null) return;
+    updateSizeAndPos(event, element, 2.5);
   }
 
   function removeElement(type, pointerId) {
