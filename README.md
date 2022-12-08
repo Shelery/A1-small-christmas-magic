@@ -1,0 +1,12 @@
+# A1-small-christmas-magic
+## Programming 2022, Interaction Design Bacherlor, Malmö University
+### 1st assignment
+Task:
+Choose a quality (woobly, elastic, stubborn, glass, shy, etc.)
+and express it in code!
+Our quality: candle light / breathing light / christmas magic
+Instructions:
+ - put one finger on the screen
+ - start to move it around
+ - put multiple fingers on it
+ - enjoy the light it brings into the Scandinavian winter!
